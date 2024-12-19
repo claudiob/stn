@@ -1,0 +1,27 @@
+name: Ruby
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.2.2'
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Run the default task
+      run: STN_APP_KEY='${{ secrets.STN_APP_KEY }}' STN_TENANT_ID='${{ secrets.STN_TENANT_ID }}' STN_CLIENT_ID='${{ secrets.STN_CLIENT_ID }}' STN_CLIENT_SECRET='${{ secrets.STN_CLIENT_SECRET }}' bundle exec rspec
