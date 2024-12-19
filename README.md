@@ -51,14 +51,6 @@ Stn.configure do |config|
 end
 ```
 
-Mocking the ServiceTitan API
-======================
-
-Sometimes you want to mock the API requests to ServiceTitan and obtain results that
-are equivalent to the original API calls. This can be useful to test your flow
-without hitting the API.
-
-
 Configuring with environment variables
 --------------------------------------
 
@@ -87,11 +79,6 @@ rspec
 By default, tests are run with real HTTP calls to ServiceTitan that must be
 set with the environment variables specified above.
 
-If you do not have access to ServiceTitan, you can still run the tests mocked:
-
-```bash
-STN_MOCK=1 rspec
-```
 
 How to release new versions
 ===========================
